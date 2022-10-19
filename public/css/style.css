@@ -1,0 +1,80 @@
+label{
+    display: inline-block;
+    text-align: left;
+    width: 120px;
+}
+
+section{
+    padding: 10px 50px;
+    border: 1px solid;
+    width: 500px;
+    margin: 0 auto;
+}
+
+textarea {
+	/* width: 480px;  横幅 */
+    width: 100%;
+	height: 100px; /* 高さ */
+    justify-content: start;
+    text-align: left; 
+    padding: 0;
+    margin: 0;
+}
+
+
+
+.titlebar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.center {
+     text-align: center;
+}
+
+
+.post_button{
+    text-align: center;
+    width: 100px;
+    font-size: 15px;
+    color: #fff;
+    padding: 5px 0px;
+	background-color: gray;
+}
+
+
+.button {
+    width: 100px;
+    font-size: 15px;
+    color: #fff;
+    padding: 5px 0px;
+	background-color: gray;
+}
+
+.delete_button {
+    margin-left: 10px; 
+}
+
+
+.select_button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.white_button{
+    border: none;
+    text-align: center;
+    width: 100px;
+    font-size: 15px;
+    color: #fff;
+    padding: 5px 0px;
+	background-color: #fff;
+}
+
+.frame{
+    padding: 10px; 
+    margin-bottom: 10px; 
+    border: none;  
+    background-color: lightgray;
+
+}
