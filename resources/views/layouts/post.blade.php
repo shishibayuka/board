@@ -18,13 +18,13 @@
     <form method="POST" action="{{ route('logout') }}">
     @csrf
     <button type="submit">ログアウト</button>
-
+    </form>
     <section>
-        <form action="post.php" method="post">
-
-            <p class="name">投稿者：
-    
-            </p>
+   <!-- メッセージを投稿したら保存する -->
+    <form method="POST" action="{{ route('post.store') }}">
+        @csrf
+        <!-- 認証ユーザーの名前を表示 -->
+            <p class="name">投稿者：{{auth()->user()->name}}</p>
             <textarea name="message"></textarea>
             <br>
             <div class="center">
@@ -38,9 +38,14 @@
     </section>
     <br>
 
+  
    <!-- foreach繰り返し -->
+    @foreach($posts as $post)
+        <td>{{$post->message}}</td>
+    @endforeach
         <section>
             <div>
+
                 <div class="titlebar">
                     <p class="name">投稿者：</p>
                     <p class="time"></p>
@@ -78,7 +83,7 @@
             </div>
         </section>
         <br>
-
+        
 </body>
 
 </html>
