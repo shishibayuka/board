@@ -28,21 +28,15 @@ Route::middleware([
     //     return view('/layouts/post');
     // });
     Route::get('/', 'App\Http\Controllers\postsController@index');
-
 });
 
 // ホームのページを指定したら、postsControllerのindex部分を表示する
 // Route::get('/', 'postsController@index')->name('posts.index');
 
-Route::group(['prefix'=>'posts'], function () {
+Route::group(['prefix' => 'posts'], function () {
 
-      //導線追加
-      Route::get('show', 'App\Http\Controllers\postsController@show')->name('post.show');
+    //導線追加
+    Route::get('show', 'App\Http\Controllers\postsController@show')->name('post.show');
     //追加
     Route::post('store', 'App\Http\Controllers\postsController@store')->name('post.store');
-  });
-
-
-
-
-
+});

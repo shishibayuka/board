@@ -58,4 +58,10 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    // 主テーブル(users)から従テーブル(posts)の情報を複数引き出す
+    public function posts(){
+        return $this->hasMany('App\Models\posts');
+        // return $this->hasMany('posts::class');
+    }
 }
