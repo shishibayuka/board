@@ -42,29 +42,41 @@
                     <p class="time">{{$post->created}}</p>
                 </td>
             </div>
-            <form action="post.php" method="post">
-                <div class="frame">
-                    <!-- ②編集中の投稿IDだったら、編集画面を表示 -->
-                    <div class="left">
-                        {{-- <textarea name="message" rows="4" cols="65"></textarea> --}}
-                        <td>{{$post->message}}</td>
-                    </div>
-                    <p></p>
+
+            <div class="frame">
+                <!-- ②編集中の投稿IDだったら、編集画面を表示 -->
+                <div class="left">
+                    {{-- <textarea name="message" rows="4" cols="65"></textarea> --}}
+                    <td>{{$post->message}}</td>
                 </div>
-                <!-- もしログイン者と投稿者が一緒だったら 「編集」「削除」ボタンを表示-->
-                @if($post->user_id == auth()->user()->id)
-                <div class="select_button">
-                    <input type="submit" value="編集" name="edit" class="button">
+                <p></p>
+            </div>
+            <!-- もしログイン者と投稿者が一緒だったら 「編集」「削除」ボタンを表示-->
+            @if($post->user_id == auth()->user()->id)
+            <div class="select_button">
+                <input type="submit" value="編集" name="edit" class="button">
+
+                <!-- 削除ボタンを押したら、削除する -->
+                <form method="POST" action="{{ route('post.destroy',$post->id) }}">
+                    @csrf
+                    <!-- クラスを2つ指定する（buttonとdelete_button） -->
                     <input type="submit" value="削除" name="delete" class="button delete_button">
-                </div>
-                @endif
-                <!-- ブラウザ上に表示されない非表示データを送信 -->
-                <!-- // (21)編集ボタンが押されたら、更新ボタンを表示（全部表示するわけではない） -->
-                {{-- <div class="select_button">
-                    <input type="submit" value="更新" name="update" class="button">
-                    <input class="white_button">
-                </div> --}}
-            </form>
+                </form>
+
+
+
+
+
+
+            </div>
+            @endif
+            <!-- ブラウザ上に表示されない非表示データを送信 -->
+            <!-- // (21)編集ボタンが押されたら、更新ボタンを表示（全部表示するわけではない） -->
+            {{-- <div class="select_button">
+                <input type="submit" value="更新" name="update" class="button">
+                <input class="white_button">
+            </div> --}}
+
         </div>
     </section>
     <br>

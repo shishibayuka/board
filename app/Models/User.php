@@ -60,8 +60,9 @@ class User extends Authenticatable
     ];
 
     // 主テーブル(users)から従テーブル(posts)の情報を複数引き出す
-    public function posts(){
+    public function posts()
+    {
         return $this->hasMany('App\Models\posts');
-        // return $this->hasMany('posts::class');
+        // return $this->hasMany(posts::class);
     }
 }

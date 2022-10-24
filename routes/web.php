@@ -39,4 +39,6 @@ Route::group(['prefix' => 'posts'], function () {
     Route::get('show', 'App\Http\Controllers\postsController@show')->name('post.show');
     //追加
     Route::post('store', 'App\Http\Controllers\postsController@store')->name('post.store');
+    //削除
+    Route::post('destroy/{id}', 'App\Http\Controllers\postsController@destroy')->name('post.destroy');
 });

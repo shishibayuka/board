@@ -50,4 +50,17 @@ class postsController extends Controller
         //一覧表示画面にリダイレクト
         return redirect('/');
     }
+
+    public function destroy($id)
+    {
+        $post = posts::find($id);
+        // if文追加：もし$postが空だったら、処理を終了する
+        if (!$post) {
+            return;
+        }
+        $post->delete();
+
+        //一覧表示画面にリダイレクト
+        return redirect('/');
+    }
 }
