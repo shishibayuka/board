@@ -27,6 +27,7 @@ Route::middleware([
     //     // viewsフォルダ内のlayouts→postを表示する
     //     return view('/layouts/post');
     // });
+
     Route::get('/', 'App\Http\Controllers\postsController@index');
 });
 
@@ -35,10 +36,12 @@ Route::middleware([
 
 Route::group(['prefix' => 'posts'], function () {
 
-    //導線追加
+    //表示(show)
     Route::get('show', 'App\Http\Controllers\postsController@show')->name('post.show');
-    //追加
+    //保存(store)
     Route::post('store', 'App\Http\Controllers\postsController@store')->name('post.store');
-    //削除
+    //削除(destroy)
     Route::post('destroy/{id}', 'App\Http\Controllers\postsController@destroy')->name('post.destroy');
+    //編集(edit)
+    Route::get('edit/{id}', 'App\Http\Controllers\postsController@edit')->name('post.edit');
 });
