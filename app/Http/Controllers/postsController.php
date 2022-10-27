@@ -29,12 +29,15 @@ class postsController extends Controller
         $post = new posts;
 
         $post->user_id =  Auth::id();;
+
         // $post->user_id = $request->input('user_id');
         // 入力値の要求
         $post->message = $request->input('message');
+
         // TIMES
         // $post->created = date('Y-m-d H:i:s');
         $post->created = NOW();
+
         // エラー回避のため、timestampを無効にした
         $post->timestamps = false;
         $post->save();
@@ -47,6 +50,7 @@ class postsController extends Controller
     {
         // idに関する情報を取得
         $post = posts::find($id);
+
         // if文追加：もし$postが空だったら、処理を終了する
         if (!$post) {
             return;
@@ -57,6 +61,7 @@ class postsController extends Controller
         return redirect('/');
     }
 
+    // 編集
     public function edit($id)
     {
         $posts = posts::with('user')->get();
@@ -64,5 +69,29 @@ class postsController extends Controller
         //一覧表示画面にリダイレクト
         // return redirect('/');
         return view('/layouts/post', compact('editPostId', 'posts'));
+    }
+
+    // メソッドインジェクション（Request $request）:ブラウザーから送られたリクエストのデータを取得して処理
+    public function update(Request $request, $id)
+    {
+        // ボタンを押した際のIDの情報をpostsテーブルから検索して$postに値を格納
+        $post = posts::find($id);
+
+        // inputを使用し、リクエストパラメータを1つずつ取得
+        $post->message = $request->input('updateMessage');
+
+        // <公式>デフォルトでEloquentはデータベース上に存在する
+        // created_at(作成時間)とupdated_at(更新時間)カラムを自動的に更新します。
+        // これらのカラムの自動更新をEloquentにしてほしくない場合は、
+        // モデルの$timestampsプロパティーをfalseに設定
+        // ↑のエラー回避(あらかじめ用意してあるupdated_atカラムがないよ)のため、timestampを無効にする
+        // ddd($request->input);
+        $post->timestamps = false;
+
+        //DBに保存
+        $post->save();
+
+        //一覧表示画面にリダイレクト
+        return redirect('/');
     }
 }

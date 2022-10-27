@@ -9,6 +9,10 @@ class posts extends Model
 {
   use HasFactory;
 
+  protected $dates = [
+    'created'
+  ];
+
   // 従テーブル(posts)から主テーブル(users)の情報を複数引き出す
   public function user()
   {

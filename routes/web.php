@@ -44,4 +44,6 @@ Route::group(['prefix' => 'posts'], function () {
     Route::post('destroy/{id}', 'App\Http\Controllers\postsController@destroy')->name('post.destroy');
     //編集(edit)
     Route::get('edit/{id}', 'App\Http\Controllers\postsController@edit')->name('post.edit');
+    //更新(update)
+    Route::post('update/{id}', 'App\Http\Controllers\postsController@update')->name('post.update');
 });
